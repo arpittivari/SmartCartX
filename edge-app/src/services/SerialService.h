@@ -6,18 +6,21 @@
 #include <QTimer>
 #include "../../protocols/include/packet.hpp"
 #include "TelemetryService.h"
-#include "ShoppingService.h"
+#include "../drivers/interfaces/IWeightSensor.h"
+#include "../drivers/interfaces/IBatteryMonitor.h"
+#include "../drivers/interfaces/IButtonInput.h"
 
 class SerialService : public QObject {
     Q_OBJECT
 public:
-    explicit SerialService(const QString& portName, TelemetryService* telemetry, ShoppingService* shopping, QObject *parent = nullptr);
+    explicit SerialService(const QString& portName, TelemetryService* telemetry, QObject *parent = nullptr);
     virtual ~SerialService();
 
 public slots:
     void openPort();
     void closePort();
     bool sendPacket(SmartCart::Protocol::Command cmd, const uint8_t* payload, uint8_t payloadLen);
+    void simulateRx(const QByteArray& data);
 
 signals:
     void portOpened();
@@ -37,7 +40,6 @@ private:
     SmartCart::Protocol::PacketParser m_parser;
     bool m_isConnected;
     TelemetryService* m_telemetry;
-    ShoppingService* m_shopping;
 };
 
 #endif

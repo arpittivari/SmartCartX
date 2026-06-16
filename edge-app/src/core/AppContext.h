@@ -9,7 +9,9 @@
 #include "../services/TelemetryService.h"
 #include "../services/ShoppingService.h"
 #include "../services/SerialService.h"
-#include "../drivers/MockSensorProvider.h"
+#include "../drivers/Stm32Simulator.h"
+#include "../controllers/DebugController.h"
+#include "../di/HardwareProviderFactory.h"
 
 class AppContext : public QObject {
     Q_OBJECT
@@ -26,6 +28,7 @@ public:
     TelemetryService* telemetryService() { return m_telemetryService; }
     ShoppingService* shoppingService() { return m_shoppingService; }
     SerialService* serialService() { return m_serialService; }
+    DebugController* debugController() { return m_debugController; }
 
 private slots:
     void onConfigChanged();
@@ -38,7 +41,9 @@ private:
     TelemetryService* m_telemetryService;
     ShoppingService* m_shoppingService;
     SerialService* m_serialService;
-    MockSensorProvider* m_mockSensorProvider;
+    Stm32Simulator* m_stm32Simulator;
+    DebugController* m_debugController;
+    HardwareProviderFactory* m_hwFactory;
 };
 
 #endif

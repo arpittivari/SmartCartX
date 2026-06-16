@@ -1,8 +1,8 @@
 #include "SerialService.h"
 #include <QDebug>
 
-SerialService::SerialService(const QString& portName, TelemetryService* telemetry, ShoppingService* shopping, QObject *parent)
-    : QObject(parent), m_portName(portName), m_isConnected(false), m_telemetry(telemetry), m_shopping(shopping)
+SerialService::SerialService(const QString& portName, TelemetryService* telemetry, QObject *parent)
+    : QObject(parent), m_portName(portName), m_isConnected(false), m_telemetry(telemetry)
 {
     m_serial = new QSerialPort(this);
     m_serial->setPortName(m_portName);
@@ -63,8 +63,7 @@ bool SerialService::sendPacket(SmartCart::Protocol::Command cmd, const uint8_t* 
     return false;
 }
 
-void SerialService::onReadyRead() {
-    QByteArray data = m_serial->readAll();
+void SerialService::simulateRx(const QByteArray& data) {
     m_parser.feed(reinterpret_cast<const uint8_t*>(data.constData()), data.size());
 
     while (m_parser.hasPacket()) {
@@ -73,20 +72,19 @@ void SerialService::onReadyRead() {
         
         emit packetReceived(cmd, payload, m_parser.getPayloadLength());
         
-        if (cmd == SmartCart::Protocol::Command::CMD_BATTERY_TELEMETRY && m_telemetry) {
-            const auto* bp = reinterpret_cast<const SmartCart::Protocol::BatteryPayload*>(payload);
-            m_telemetry->updateBattery(static_cast<float>(bp->state_of_charge_pct));
-        }
-        else if (cmd == SmartCart::Protocol::Command::CMD_HEARTBEAT && m_telemetry) {
+        if (cmd == SmartCart::Protocol::Command::CMD_HEARTBEAT && m_telemetry) {
             m_telemetry->publishHeartbeat();
         }
-        else if (cmd == SmartCart::Protocol::Command::CMD_WEIGHT_TELEMETRY && m_shopping) {
-            const auto* wp = reinterpret_cast<const SmartCart::Protocol::WeightPayload*>(payload);
-            m_shopping->processWeightEvent(wp->weight_grams);
-        }
+        // NOTE: In the HAL model, SerialService no longer directly drives Shopping or Battery.
+        // Instead, the STM32HardwareProviders will listen to the packetReceived signal.
         
         m_parser.consumePacket();
     }
+}
+
+void SerialService::onReadyRead() {
+    QByteArray data = m_serial->readAll();
+    simulateRx(data);
 }
 
 void SerialService::handleError(QSerialPort::SerialPortError error) {

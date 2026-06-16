@@ -9,7 +9,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick SerialPort)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick SerialPort Multimedia)
 
 add_subdirectory(../protocols protocols)
 
@@ -59,8 +59,20 @@ qt_add_executable(edge_app
     src/services/CheckoutService.h
     src/services/SerialService.h
     src/services/SerialService.cpp
-    src/drivers/MockSensorProvider.h
-    src/drivers/MockSensorProvider.cpp
+    src/drivers/Stm32Simulator.h
+    src/drivers/Stm32Simulator.cpp
+    src/controllers/DebugController.h
+    src/controllers/DebugController.cpp
+    src/drivers/simulated/SimulatedWeightSensor.cpp
+    src/drivers/simulated/SimulatedBatteryMonitor.cpp
+    src/drivers/simulated/SimulatedButtonInput.cpp
+    src/drivers/simulated/MockBarcodeScanner.cpp
+    src/drivers/pc/PcWebcamCamera.cpp
+    src/drivers/pc/QtAudioPlayer.cpp
+    src/drivers/stm32/STM32WeightSensor.cpp
+    src/drivers/stm32/STM32BatteryMonitor.cpp
+    src/drivers/stm32/STM32ButtonInput.cpp
+    src/di/HardwareProviderFactory.cpp
 )
 
 target_link_libraries(edge_app PRIVATE
@@ -69,6 +81,7 @@ target_link_libraries(edge_app PRIVATE
     Qt6::Qml
     Qt6::Quick
     Qt6::SerialPort
+    Qt6::Multimedia
     protocols
     paho-mqttpp3
 )
@@ -85,6 +98,7 @@ qt_add_qml_module(edge_app
         qml/ShoppingView.qml
         qml/CheckoutScreen.qml
         qml/PaymentCompleteScreen.qml
+        qml/DebugPanel.qml
 )
 
 option(BUILD_TESTING "Build tests" OFF)

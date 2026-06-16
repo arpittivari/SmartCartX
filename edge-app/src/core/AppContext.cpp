@@ -6,12 +6,20 @@ AppContext::AppContext(QObject *parent) : QObject(parent) {
     m_stateManager = new StateManager(this);
     m_mqttService = new MqttService(this);
     
-    // Pass MAC address mock, or fetch dynamically in production
-    m_telemetryService = new TelemetryService(m_mqttService, "AA:BB:CC:DD:EE:FF", this);
+    m_telemetryService = new TelemetryService(m_mqttService, nullptr, "AA:BB:CC:DD:EE:FF", this); // Temporary to satisfy SerialService dependency
+    m_serialService = new SerialService("/dev/ttyUSB0", m_telemetryService, this);
+    
+    // Choose mode (Mock for Milestone 1 or STM32 for Future production)
+    // NOTE: For the Simulator milestone, we can actually just run PRODUCTION_STM32_JETSON and pipe simulator data to the serial parser!
+    m_hwFactory = new HardwareProviderFactory(HardwareMode::PRODUCTION_STM32_JETSON, m_serialService, this);
+    
+    // Update Telemetry with actual BatteryMonitor
+    m_telemetryService->setBatteryMonitor(m_hwFactory->getBatteryMonitor());
     m_provisioningService = new ProvisioningService(m_mqttService, m_configManager, this);
-    m_shoppingService = new ShoppingService(m_telemetryService, this);
-    m_serialService = new SerialService("/dev/ttyUSB0", m_telemetryService, m_shoppingService, this);
-    m_mockSensorProvider = new MockSensorProvider(m_telemetryService, m_shoppingService, this);
+    m_shoppingService = new ShoppingService(m_telemetryService, m_hwFactory->getWeightSensor(), m_hwFactory->getBarcodeScanner(), m_hwFactory->getAudioPlayer(), this);
+    
+    m_stm32Simulator = new Stm32Simulator(m_serialService, this);
+    m_debugController = new DebugController(m_stateManager, m_serialService, m_mqttService, this);
 
     connect(m_configManager, &ConfigManager::configChanged, this, &AppContext::onConfigChanged);
     connect(m_mqttService, &MqttService::connected, this, [this]() {
@@ -37,7 +45,7 @@ void AppContext::initialize() {
         m_telemetryService->updateState(CartState::ONLINE);
         
         m_serialService->openPort();
-        m_mockSensorProvider->startMocking();
+        m_stm32Simulator->startMocking();
         
         // Connect to MQTT with loaded credentials
         m_mqttService->connectToBroker(

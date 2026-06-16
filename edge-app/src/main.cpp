@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     
     engine.rootContext()->setContextProperty("stateManager", context.stateManager());
     engine.rootContext()->setContextProperty("provisioningService", context.provisioningService());
+    engine.rootContext()->setContextProperty("debugController", context.debugController());
 
     const QUrl url(u"qrc:/SmartCart/qml/Main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
