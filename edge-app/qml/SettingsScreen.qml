@@ -43,7 +43,7 @@ Item {
                 Text { text: (debugController && debugController.mqttConnected) ? "Connected" : "Disconnected"; font.pixelSize: Theme.fontSizeMedium; color: (debugController && debugController.mqttConnected) ? "green" : "red" }
 
                 Text { text: "MQTT Broker:"; font.pixelSize: Theme.fontSizeMedium; font.bold: true; color: Theme.textColor }
-                Text { text: "broker.hivemq.com"; font.pixelSize: Theme.fontSizeMedium; color: Theme.textColor }
+                Text { text: settingsController ? settingsController.mqttBroker : ""; font.pixelSize: Theme.fontSizeMedium; color: Theme.textColor }
 
                 Text { text: "Software Version:"; font.pixelSize: Theme.fontSizeMedium; font.bold: true; color: Theme.textColor }
                 Text { text: "SmartCartX v0.1.0"; font.pixelSize: Theme.fontSizeMedium; color: Theme.textColor }

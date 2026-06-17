@@ -49,6 +49,13 @@ void ProvisioningService::onMqttMessageReceived(const QString& topic, const QStr
                 configData["mqttUser"] = obj["mqttUser"].toString(macAddress);
                 configData["mqttPass"] = obj["mqttPass"].toString();
                 
+                if (obj.contains("mqttBroker")) {
+                    configData["mqttBroker"] = obj["mqttBroker"].toString();
+                }
+                if (obj.contains("mqttPort")) {
+                    configData["mqttPort"] = obj["mqttPort"].toInt();
+                }
+
                 m_config->saveConfig(configData);
                 m_mallId.clear(); // Reset state
                 

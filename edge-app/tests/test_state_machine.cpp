@@ -18,6 +18,10 @@ TEST(StateManagerTest, FlowThroughShoppingSession) {
     sm.handleConfigMissing();
     EXPECT_EQ(sm.currentState(), AppState::DEVICE_PROVISIONING);
 
+    // Simulate start provisioning
+    sm.startProvisioning();
+    EXPECT_EQ(sm.currentState(), AppState::WAITING_APPROVAL);
+
     // Simulated cloud approval
     sm.handleApprovalReceived();
     // Flow normally restarts to BOOT via AppContext reload, but StateManager maps WAITING_APPROVAL -> BOOT directly for test simplicity right now

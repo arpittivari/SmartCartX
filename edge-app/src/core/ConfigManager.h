@@ -22,6 +22,8 @@ public:
     QString getCartId() const;
     QString getMqttUser() const;
     QString getMqttPass() const;
+    QString getMqttBroker() const;
+    int getMqttPort() const;
 
     void factoryReset();
 

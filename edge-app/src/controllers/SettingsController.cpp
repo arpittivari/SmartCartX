@@ -14,6 +14,10 @@ QString SettingsController::mallId() const {
     return m_config ? m_config->getMallId() : "";
 }
 
+QString SettingsController::mqttBroker() const {
+    return m_config ? m_config->getMqttBroker() : "";
+}
+
 void SettingsController::setDeveloperMode(bool mode) {
     if (m_developerMode != mode) {
         m_developerMode = mode;

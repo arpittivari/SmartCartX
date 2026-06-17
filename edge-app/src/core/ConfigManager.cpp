@@ -26,6 +26,12 @@ bool ConfigManager::saveConfig(const QVariantMap& configData) {
     m_settings.setValue("cartId", configData.value("cartId"));
     m_settings.setValue("mqttUser", configData.value("mqttUser"));
     m_settings.setValue("mqttPass", configData.value("mqttPass"));
+    if (configData.contains("mqttBroker")) {
+        m_settings.setValue("mqttBroker", configData.value("mqttBroker"));
+    }
+    if (configData.contains("mqttPort")) {
+        m_settings.setValue("mqttPort", configData.value("mqttPort"));
+    }
     m_settings.setValue("isProvisioned", true);
     m_settings.endGroup();
     m_settings.sync();
@@ -53,6 +59,26 @@ QString ConfigManager::getMqttUser() const {
 
 QString ConfigManager::getMqttPass() const {
     return m_settings.value("SMARTCART/mqttPass", "").toString();
+}
+
+QString ConfigManager::getMqttBroker() const {
+    // 1. Check environment variable
+    if (qEnvironmentVariableIsSet("MQTT_BROKER")) {
+        return qEnvironmentVariable("MQTT_BROKER");
+    }
+    // 2. Check settings, default to hardcoded
+    return m_settings.value("SMARTCART/mqttBroker", "broker.hivemq.com").toString();
+}
+
+int ConfigManager::getMqttPort() const {
+    // 1. Check environment variable
+    if (qEnvironmentVariableIsSet("MQTT_PORT")) {
+        bool ok;
+        int port = qEnvironmentVariable("MQTT_PORT").toInt(&ok);
+        if (ok) return port;
+    }
+    // 2. Check settings, default to 1883
+    return m_settings.value("SMARTCART/mqttPort", 1883).toInt();
 }
 
 void ConfigManager::factoryReset() {

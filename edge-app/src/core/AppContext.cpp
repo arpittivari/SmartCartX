@@ -49,8 +49,8 @@ void AppContext::initialize() {
         
         // Connect to MQTT with loaded credentials
         m_mqttService->connectToBroker(
-            "broker.hivemq.com", // Example broker
-            1883,
+            m_configManager->getMqttBroker(),
+            m_configManager->getMqttPort(),
             m_configManager->getCartId(),
             m_configManager->getMqttUser(),
             m_configManager->getMqttPass()
@@ -60,8 +60,8 @@ void AppContext::initialize() {
         
         // In unprovisioned state, connect anonymously
         m_mqttService->connectToBroker(
-            "broker.hivemq.com",
-            1883,
+            m_configManager->getMqttBroker(),
+            m_configManager->getMqttPort(),
             "pi_UNPROVISIONED"
         );
         m_provisioningService->startProvisioning();
