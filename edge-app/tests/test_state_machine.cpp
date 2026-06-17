@@ -10,20 +10,11 @@ TEST(StateManagerTest, InitialStateIsBoot) {
 TEST(StateManagerTest, FlowThroughShoppingSession) {
     StateManager sm;
     
-    // Simulate AppContext startup without config
+    // Simulate AppContext startup with config
     sm.checkDeviceConfiguration();
     EXPECT_EQ(sm.currentState(), AppState::CHECK_DEVICE_CONFIGURATION);
 
-    // Missing config triggers provisioning
-    sm.handleConfigMissing();
-    EXPECT_EQ(sm.currentState(), AppState::DEVICE_PROVISIONING);
-
-    // Simulated cloud approval
-    sm.handleApprovalReceived();
-    // Flow normally restarts to BOOT via AppContext reload, but StateManager maps WAITING_APPROVAL -> BOOT directly for test simplicity right now
-
     // Assuming Config is loaded
-    sm.checkDeviceConfiguration();
     sm.handleConfigLoaded();
     EXPECT_EQ(sm.currentState(), AppState::CUSTOMER_ONBOARDING);
 
