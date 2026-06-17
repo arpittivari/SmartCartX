@@ -6,11 +6,11 @@
 class IBatteryMonitor : public QObject {
     Q_OBJECT
 public:
-    explicit IBatteryMonitor(QObject* parent = nullptr) : QObject(parent) {}
-    virtual ~IBatteryMonitor() = default;
+    explicit IBatteryMonitor(QObject* parent = nullptr);
+    virtual ~IBatteryMonitor();
 
 signals:
-    void batteryLevelChanged(float percentage);
+    void batteryLevelChanged(float level);
 };
 
 #endif

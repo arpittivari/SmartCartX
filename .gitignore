@@ -4,3 +4,4 @@ firmware/.pio/
 build_edge/
 build_edge/
 build_edge/
+edge-app/build/

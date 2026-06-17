@@ -7,7 +7,8 @@
 class UsbBarcodeScanner : public IBarcodeScanner {
     Q_OBJECT
 public:
-    explicit UsbBarcodeScanner(QObject* parent = nullptr) : IBarcodeScanner(parent) {}
+    explicit UsbBarcodeScanner(QObject* parent = nullptr);
+    virtual ~UsbBarcodeScanner();
 };
 
 #endif

@@ -6,8 +6,8 @@
 class IButtonInput : public QObject {
     Q_OBJECT
 public:
-    explicit IButtonInput(QObject* parent = nullptr) : QObject(parent) {}
-    virtual ~IButtonInput() = default;
+    explicit IButtonInput(QObject* parent = nullptr);
+    virtual ~IButtonInput();
 
 signals:
     void buttonPressed(int buttonId);

@@ -7,7 +7,8 @@
 class JetsonCamera : public ICamera {
     Q_OBJECT
 public:
-    explicit JetsonCamera(QObject* parent = nullptr) : ICamera(parent) {}
+    explicit JetsonCamera(QObject* parent = nullptr);
+    virtual ~JetsonCamera();
     void startCapture() override {}
     void stopCapture() override {}
 };

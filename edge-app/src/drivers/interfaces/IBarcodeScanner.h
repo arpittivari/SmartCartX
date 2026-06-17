@@ -7,8 +7,8 @@
 class IBarcodeScanner : public QObject {
     Q_OBJECT
 public:
-    explicit IBarcodeScanner(QObject* parent = nullptr) : QObject(parent) {}
-    virtual ~IBarcodeScanner() = default;
+    explicit IBarcodeScanner(QObject* parent = nullptr);
+    virtual ~IBarcodeScanner();
 
 signals:
     void barcodeScanned(const QString& barcodeData);
