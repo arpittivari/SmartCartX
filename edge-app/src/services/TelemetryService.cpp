@@ -1,18 +1,15 @@
 #include "TelemetryService.h"
-#include <QJsonDocument>
-#include <QJsonObject>
 #include <QDebug>
 
 TelemetryService::TelemetryService(MqttService* mqtt, IBatteryMonitor* batteryMonitor, const QString& macAddress, QObject *parent)
     : QObject(parent), m_mqtt(mqtt), m_batteryMonitor(batteryMonitor), m_macAddress(macAddress)
 {
     m_timer = new QTimer(this);
-    m_timer->setInterval(60000); // 60 seconds interval matching Python legacy
+    m_timer->setInterval(5000); // 5 sec interval for regular telemetry
     connect(m_timer, &QTimer::timeout, this, &TelemetryService::onPublishTick);
-    
+
     m_watchdogTimer = new QTimer(this);
-    m_watchdogTimer->setInterval(15000); // Expect heartbeat every 5s, timeout after 15s
-    m_watchdogTimer->setSingleShot(true);
+    m_watchdogTimer->setInterval(30000); // 30 sec heartbeat/watchdog
     connect(m_watchdogTimer, &QTimer::timeout, this, &TelemetryService::onHeartbeatTimeout);
     
     if (m_batteryMonitor) {
@@ -31,79 +28,107 @@ void TelemetryService::setBatteryMonitor(IBatteryMonitor* monitor) {
 }
 
 void TelemetryService::startTelemetry() {
-    qDebug() << "[TelemetryService] Starting...";
-    m_model.setState(CartState::READY);
+    qDebug() << "[TelemetryService] Starting telemetry pipelines.";
     m_timer->start();
-    // Publish initial status immediately
-    onPublishTick();
+    m_watchdogTimer->start();
 }
 
 void TelemetryService::stopTelemetry() {
-    qDebug() << "[TelemetryService] Stopping...";
     m_timer->stop();
     m_watchdogTimer->stop();
-    m_model.setState(CartState::OFFLINE);
-    onPublishTick();
-}
-
-void TelemetryService::onBatteryLevelChanged(float pct) {
-    m_model.setBattery(pct);
 }
 
 void TelemetryService::updateState(CartState state) {
     m_model.setState(state);
-    // Push critical state changes immediately instead of waiting for the 60s tick
-    onPublishTick(); 
+
+    // Publish immediate state change
+    QJsonObject payload = m_model.toJson();
+    m_mqtt->publish("carts/telemetry/state", QJsonDocument(payload).toJson(QJsonDocument::Compact));
 }
 
 void TelemetryService::publishHeartbeat() {
-    // Usually triggered by STM32 UART packets
-    
-    // Reset watchdog timer because device is alive
-    if (m_model.health() == 0) { // If it was offline, bring it back online
-        m_model.setHealth(100);
-        updateState(CartState::ONLINE); 
-    }
-    m_watchdogTimer->start();
-    
     QJsonObject payload;
-    payload["status"] = "alive";
+    payload["mac"] = m_macAddress;
+    payload["timestamp"] = QDateTime::currentSecsSinceEpoch();
+    payload["health"] = "OK";
     
-    QString topic = QString("smartcart/%1/heartbeat").arg(m_macAddress);
-    m_mqtt->publish(topic, QJsonDocument(payload).toJson(QJsonDocument::Compact));
-}
-
-void TelemetryService::onHeartbeatTimeout() {
-    qWarning() << "[TelemetryService] Hardware Heartbeat timeout. Marking device offline/degraded.";
-    m_model.setHealth(0);
-    updateState(CartState::OFFLINE);
+    m_mqtt->publish("carts/telemetry/heartbeat", QJsonDocument(payload).toJson(QJsonDocument::Compact));
 }
 
 void TelemetryService::publishSessionUpdate(const ShoppingSession& session) {
     QJsonObject payload;
     payload["sessionId"] = session.sessionId();
-    payload["customerId"] = session.customer().id();
-    payload["customerIdentifier"] = session.customer().identifier();
-    payload["isActive"] = session.isActive();
+    payload["customerId"] = session.customer().identifier();
+    payload["active"] = session.isActive();
+    payload["timestamp"] = QDateTime::currentSecsSinceEpoch();
     
-    QString topic = QString("smartcart/%1/session").arg(m_macAddress);
-    m_mqtt->publish(topic, QJsonDocument(payload).toJson(QJsonDocument::Compact));
+    m_mqtt->publish("carts/telemetry/session", QJsonDocument(payload).toJson(QJsonDocument::Compact));
 }
 
 void TelemetryService::publishWeightUpdate(int grams) {
     QJsonObject payload;
-    payload["weight_grams"] = grams;
+    payload["mac"] = m_macAddress;
+    payload["weight_g"] = grams;
+    payload["timestamp"] = QDateTime::currentSecsSinceEpoch();
     
-    QString topic = QString("smartcart/%1/weight").arg(m_macAddress);
-    m_mqtt->publish(topic, QJsonDocument(payload).toJson(QJsonDocument::Compact));
+    m_mqtt->publish("carts/telemetry/weight", QJsonDocument(payload).toJson(QJsonDocument::Compact));
+}
+
+void TelemetryService::publishItemEvent(const QString& eventType, const QString& sku, double price) {
+    QJsonObject payload;
+    payload["event"] = eventType;
+    payload["sku"] = sku;
+    payload["price"] = price;
+    payload["timestamp"] = QDateTime::currentSecsSinceEpoch();
+    m_mqtt->publish("carts/telemetry/items", QJsonDocument(payload).toJson(QJsonDocument::Compact));
+}
+
+void TelemetryService::publishCartTotal(int quantity, double price, double weight) {
+    QJsonObject payload;
+    payload["event"] = "CART_TOTAL_UPDATED";
+    payload["total_qty"] = quantity;
+    payload["total_price"] = price;
+    payload["total_weight"] = weight;
+    payload["timestamp"] = QDateTime::currentSecsSinceEpoch();
+    m_mqtt->publish("carts/telemetry/totals", QJsonDocument(payload).toJson(QJsonDocument::Compact));
+}
+
+void TelemetryService::publishSessionStarted(const QString& sessionId, const QString& customerId) {
+    QJsonObject payload;
+    payload["event"] = "SESSION_STARTED";
+    payload["sessionId"] = sessionId;
+    payload["customerId"] = customerId;
+    payload["timestamp"] = QDateTime::currentSecsSinceEpoch();
+    m_mqtt->publish("carts/telemetry/session_events", QJsonDocument(payload).toJson(QJsonDocument::Compact));
+}
+
+void TelemetryService::publishSessionEnded(const QString& sessionId) {
+    QJsonObject payload;
+    payload["event"] = "SESSION_ENDED";
+    payload["sessionId"] = sessionId;
+    payload["timestamp"] = QDateTime::currentSecsSinceEpoch();
+    m_mqtt->publish("carts/telemetry/session_events", QJsonDocument(payload).toJson(QJsonDocument::Compact));
 }
 
 void TelemetryService::onPublishTick() {
-    QJsonObject payload;
-    payload["battery"] = static_cast<double>(m_model.battery());
-    payload["health"] = m_model.health();
-    payload["state"] = m_model.stateToString();
-    
-    QString topic = QString("smartcart/%1/telemetry").arg(m_macAddress);
-    m_mqtt->publish(topic, QJsonDocument(payload).toJson(QJsonDocument::Compact));
+    // Regular cyclic telemetry
+    QJsonObject payload = m_model.toJson();
+    payload["mac"] = m_macAddress;
+    m_mqtt->publish("carts/telemetry/cyclic", QJsonDocument(payload).toJson(QJsonDocument::Compact));
+}
+
+void TelemetryService::onHeartbeatTimeout() {
+    publishHeartbeat();
+}
+
+void TelemetryService::onBatteryLevelChanged(float pct) {
+    m_model.setBattery(pct);
+    // Publish immediate battery alert if low, otherwise let cyclic handle it
+    if (pct < 15.0f) {
+        QJsonObject payload;
+        payload["alert"] = "BATTERY_LOW";
+        payload["level"] = pct;
+        payload["mac"] = m_macAddress;
+        m_mqtt->publish("carts/alerts", QJsonDocument(payload).toJson(QJsonDocument::Compact));
+    }
 }

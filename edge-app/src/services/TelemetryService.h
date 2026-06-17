@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QTimer>
+#include <QJsonObject>
+#include <QJsonDocument>
 #include "MqttService.h"
 #include "../models/CartStatusModel.h"
 #include "../models/ShoppingSession.h"
@@ -25,6 +27,12 @@ public slots:
     void publishHeartbeat();
     void publishSessionUpdate(const ShoppingSession& session);
     void publishWeightUpdate(int grams);
+
+    // Shopping Engine integration
+    void publishItemEvent(const QString& eventType, const QString& sku, double price);
+    void publishCartTotal(int quantity, double price, double weight);
+    void publishSessionStarted(const QString& sessionId, const QString& customerId);
+    void publishSessionEnded(const QString& sessionId);
 
 private slots:
     void onPublishTick();

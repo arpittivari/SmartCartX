@@ -2,6 +2,7 @@
 #define CART_STATUS_MODEL_H
 
 #include <QString>
+#include <QJsonObject>
 
 enum class CartState {
     ONLINE,
@@ -26,6 +27,14 @@ public:
     CartState state() const { return m_state; }
     
     QString stateToString() const;
+
+    QJsonObject toJson() const {
+        QJsonObject obj;
+        obj["battery"] = m_batteryPct;
+        obj["health"] = m_health;
+        obj["state"] = stateToString();
+        return obj;
+    }
 
 private:
     float m_batteryPct;
