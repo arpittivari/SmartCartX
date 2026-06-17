@@ -16,8 +16,8 @@ enum class SoundEvent {
 class IAudioPlayer : public QObject {
     Q_OBJECT
 public:
-    explicit IAudioPlayer(QObject* parent = nullptr) : QObject(parent) {}
-    virtual ~IAudioPlayer() = default;
+    explicit IAudioPlayer(QObject* parent = nullptr);
+    virtual ~IAudioPlayer();
 
 public slots:
     virtual void playSound(SoundEvent event) = 0;

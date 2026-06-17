@@ -63,6 +63,8 @@ qt_add_executable(edge_app
     src/drivers/Stm32Simulator.cpp
     src/controllers/DebugController.h
     src/controllers/DebugController.cpp
+    src/controllers/SettingsController.h
+    src/controllers/SettingsController.cpp
     src/drivers/simulated/SimulatedWeightSensor.cpp
     src/drivers/simulated/SimulatedBatteryMonitor.cpp
     src/drivers/simulated/SimulatedButtonInput.cpp
@@ -73,6 +75,15 @@ qt_add_executable(edge_app
     src/drivers/stm32/STM32BatteryMonitor.cpp
     src/drivers/stm32/STM32ButtonInput.cpp
     src/di/HardwareProviderFactory.cpp
+    src/drivers/interfaces/interfaces.cpp
+    src/drivers/jetson/JetsonCamera.cpp
+    src/drivers/usb/UsbBarcodeScanner.cpp
+    src/drivers/interfaces/IBatteryMonitor.h
+    src/drivers/interfaces/IWeightSensor.h
+    src/drivers/interfaces/IBarcodeScanner.h
+    src/drivers/interfaces/IButtonInput.h
+    src/drivers/interfaces/ICamera.h
+    src/drivers/interfaces/IAudioPlayer.h
 )
 
 target_link_libraries(edge_app PRIVATE
@@ -99,6 +110,16 @@ qt_add_qml_module(edge_app
         qml/CheckoutScreen.qml
         qml/PaymentCompleteScreen.qml
         qml/DebugPanel.qml
+        qml/BootSequenceView.qml
+        qml/SettingsScreen.qml
+        qml/theme/Theme.qml
+)
+
+# To properly copy the qmldir for the Theme module into the build output
+set_source_files_properties(qml/theme/qmldir PROPERTIES QT_RESOURCE_ALIAS "qmldir")
+qt_add_resources(edge_app "theme_resources"
+    PREFIX "/SmartCart/qml/theme"
+    FILES qml/theme/qmldir
 )
 
 option(BUILD_TESTING "Build tests" OFF)

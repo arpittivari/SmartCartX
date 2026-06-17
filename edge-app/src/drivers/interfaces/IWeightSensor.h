@@ -6,11 +6,11 @@
 class IWeightSensor : public QObject {
     Q_OBJECT
 public:
-    explicit IWeightSensor(QObject* parent = nullptr) : QObject(parent) {}
-    virtual ~IWeightSensor() = default;
+    explicit IWeightSensor(QObject* parent = nullptr);
+    virtual ~IWeightSensor();
 
 signals:
-    void weightChanged(int grams);
+    void weightChanged(int weightGrams);
 };
 
 #endif
