@@ -44,6 +44,14 @@ qt_add_executable(edge_app
     src/models/CustomerProfile.cpp
     src/models/ShoppingSession.h
     src/models/ShoppingSession.cpp
+    src/models/Product.h
+    src/models/Product.cpp
+    src/models/ProductCatalog.h
+    src/models/ProductCatalog.cpp
+    src/models/CartItem.h
+    src/models/CartItem.cpp
+    src/models/CartModel.h
+    src/models/CartModel.cpp
     src/controllers/StateManager.cpp
     src/controllers/StateManager.h
     src/services/TelemetryService.h
