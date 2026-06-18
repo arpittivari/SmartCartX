@@ -13,26 +13,11 @@ find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick SerialPort Multimedia)
 
 add_subdirectory(../protocols protocols)
 
-include(FetchContent)
-FetchContent_Declare(
-  paho_mqtt_c
-  GIT_REPOSITORY https://github.com/eclipse/paho.mqtt.c.git
-  GIT_TAG v1.3.13
-)
 set(PAHO_WITH_SSL OFF CACHE BOOL "" FORCE)
 set(PAHO_BUILD_SAMPLES OFF CACHE BOOL "" FORCE)
 set(PAHO_BUILD_DOCUMENTATION OFF CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(paho_mqtt_c)
-
-FetchContent_Declare(
-  paho_mqtt_cpp
-  GIT_REPOSITORY https://github.com/eclipse/paho.mqtt.cpp.git
-  GIT_TAG v1.3.2
-)
-set(PAHO_WITH_SSL OFF CACHE BOOL "" FORCE)
-set(PAHO_BUILD_SAMPLES OFF CACHE BOOL "" FORCE)
-set(PAHO_BUILD_DOCUMENTATION OFF CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(paho_mqtt_cpp)
+add_subdirectory(../third_party/paho.mqtt.c third_party_c)
+add_subdirectory(../third_party/paho.mqtt.cpp third_party_cpp)
 
 qt_add_executable(edge_app
     src/main.cpp
@@ -134,13 +119,6 @@ option(BUILD_TESTING "Build tests" OFF)
 
 if(BUILD_TESTING)
     enable_testing()
-    include(FetchContent)
-    FetchContent_Declare(
-      googletest
-      URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
-    )
-    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-    FetchContent_MakeAvailable(googletest)
 
     add_executable(EdgeAppTests
         tests/test_state_machine.cpp
