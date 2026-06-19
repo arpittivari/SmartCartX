@@ -20,6 +20,7 @@ AppContext::AppContext(QObject *parent) : QObject(parent) {
     
     m_stm32Simulator = new Stm32Simulator(m_serialService, this);
     m_debugController = new DebugController(m_stateManager, m_serialService, m_mqttService, this);
+    m_settingsController = new SettingsController(m_configManager, this);
 
     connect(m_configManager, &ConfigManager::configChanged, this, &AppContext::onConfigChanged);
     connect(m_mqttService, &MqttService::connected, this, [this]() {
