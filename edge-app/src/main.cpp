@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("provisioningService", context.provisioningService());
     engine.rootContext()->setContextProperty("debugController", context.debugController());
     engine.rootContext()->setContextProperty("shoppingService", context.shoppingService());
+    engine.rootContext()->setContextProperty("settingsController", context.settingsController());
 
     const QUrl url(u"qrc:/SmartCart/qml/Main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

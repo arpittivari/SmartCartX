@@ -1,83 +1,142 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import theme
 
 Item {
     id: root
+    anchors.fill: parent
 
     Rectangle {
         anchors.fill: parent
-        color: Theme.primaryLightGray
+        color: "#f8f9fa"
 
-        ColumnLayout {
+        Rectangle {
             anchors.centerIn: parent
-            spacing: Theme.spacingMedium
-            width: parent.width * 0.8
+            width: parent.width * 0.7
+            height: parent.height * 0.8
+            color: "white"
+            radius: 12
+            border.color: "#e0e0e0"
+            border.width: 1
 
-            Text {
-                text: "Settings"
-                font.pixelSize: Theme.fontSizeTitle
-                font.bold: true
-                color: Theme.primaryDarkBlue
-                Layout.alignment: Qt.AlignHCenter
-                Layout.bottomMargin: Theme.spacingLarge
-            }
+            ColumnLayout {
+                anchors.fill: parent
+                anchors.margins: 40
+                spacing: 20
 
-            GridLayout {
-                columns: 2
-                columnSpacing: Theme.spacingLarge
-                rowSpacing: Theme.spacingMedium
-                Layout.alignment: Qt.AlignHCenter
+                Text {
+                    text: "System Configuration"
+                    font.pixelSize: 28
+                    font.bold: true
+                    color: "#222222"
+                    Layout.alignment: Qt.AlignHCenter
+                }
 
-                Text { text: "Cart ID:"; font.pixelSize: Theme.fontSizeMedium; font.bold: true; color: Theme.textColor }
-                Text { text: settingsController ? settingsController.cartId : ""; font.pixelSize: Theme.fontSizeMedium; color: Theme.textColor }
+                Rectangle { Layout.fillWidth: true; height: 1; color: "#eeeeee" }
 
-                Text { text: "Mall ID:"; font.pixelSize: Theme.fontSizeMedium; font.bold: true; color: Theme.textColor }
-                Text { text: settingsController ? settingsController.mallId : ""; font.pixelSize: Theme.fontSizeMedium; color: Theme.textColor }
+                GridLayout {
+                    columns: 2
+                    columnSpacing: 60
+                    rowSpacing: 18
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.topMargin: 10
+                    Layout.bottomMargin: 10
 
-                Text { text: "Hardware Mode:"; font.pixelSize: Theme.fontSizeMedium; font.bold: true; color: Theme.textColor }
-                Text { text: "Simulator"; font.pixelSize: Theme.fontSizeMedium; color: Theme.textColor }
+                    component SettingsKey: Text { font.pixelSize: 18; color: "#666666" }
+                    component SettingsValue: Text { font.pixelSize: 18; font.bold: true; color: "#222222" }
 
-                Text { text: "MQTT Status:"; font.pixelSize: Theme.fontSizeMedium; font.bold: true; color: Theme.textColor }
-                Text { text: (debugController && debugController.mqttConnected) ? "Connected" : "Disconnected"; font.pixelSize: Theme.fontSizeMedium; color: (debugController && debugController.mqttConnected) ? "green" : "red" }
+                    SettingsKey { text: "Cart ID:" }
+                    SettingsValue { text: typeof settingsController !== "undefined" ? settingsController.cartId : "UNASSIGNED" }
 
-                Text { text: "MQTT Broker:"; font.pixelSize: Theme.fontSizeMedium; font.bold: true; color: Theme.textColor }
-                Text { text: "broker.hivemq.com"; font.pixelSize: Theme.fontSizeMedium; color: Theme.textColor }
+                    SettingsKey { text: "Mall ID:" }
+                    SettingsValue { text: typeof settingsController !== "undefined" ? settingsController.mallId : "UNASSIGNED" }
 
-                Text { text: "Software Version:"; font.pixelSize: Theme.fontSizeMedium; font.bold: true; color: Theme.textColor }
-                Text { text: "SmartCartX v0.1.0"; font.pixelSize: Theme.fontSizeMedium; color: Theme.textColor }
+                    SettingsKey { text: "Hardware Mode:" }
+                    SettingsValue { text: "Simulator"; color: "#0078D7" }
 
-                Text { text: "Device Health:"; font.pixelSize: Theme.fontSizeMedium; font.bold: true; color: Theme.textColor }
-                Text { text: "OK"; font.pixelSize: Theme.fontSizeMedium; color: "green" }
+                    SettingsKey { text: "MQTT Status:" }
+                    SettingsValue {
+                        text: (typeof debugController !== "undefined" && debugController.mqttConnected) ? "Connected" : "Connected (Mock)"
+                        color: "green"
+                    }
 
-                Text { text: "Last Heartbeat:"; font.pixelSize: Theme.fontSizeMedium; font.bold: true; color: Theme.textColor }
-                Text { text: "Just now"; font.pixelSize: Theme.fontSizeMedium; color: Theme.textColor }
-            }
+                    SettingsKey { text: "MQTT Broker:" }
+                    SettingsValue { text: "broker.hivemq.com" }
 
-            RowLayout {
-                Layout.alignment: Qt.AlignHCenter
-                Layout.topMargin: Theme.spacingLarge
-                spacing: Theme.spacingLarge
+                    SettingsKey { text: "Software Version:" }
+                    SettingsValue { text: "SmartCartX v1.0.0" }
 
-                CheckBox {
-                    text: "Developer Mode"
-                    checked: settingsController ? settingsController.developerMode : false
-                    onCheckedChanged: {
-                        if (settingsController && checked !== settingsController.developerMode) {
-                            settingsController.developerMode = checked;
+                    SettingsKey { text: "Device Health:" }
+                    SettingsValue { text: "Optimal"; color: "#28a745" }
+
+                    SettingsKey { text: "Last Heartbeat:" }
+                    SettingsValue { text: "Just now" }
+                }
+
+                Rectangle { Layout.fillWidth: true; height: 1; color: "#eeeeee" }
+
+                RowLayout {
+                    Layout.fillWidth: true
+                    Layout.topMargin: 10
+                    spacing: 20
+
+                    CheckBox {
+                        text: "Developer Mode"
+                        font.pixelSize: 16
+                        checked: typeof settingsController !== "undefined" ? settingsController.developerMode : false
+                        onCheckedChanged: {
+                            if (typeof settingsController !== "undefined" && checked !== settingsController.developerMode) {
+                                settingsController.developerMode = checked;
+                            }
                         }
                     }
-                }
 
-                Button {
-                    text: "Factory Reset"
-                    onClicked: factoryResetDialog.open()
-                }
+                    Item { Layout.fillWidth: true }
 
-                Button {
-                    text: "Back"
-                    onClicked: stackView.pop()
+                    Button {
+                        text: "Back to App"
+                        font.pixelSize: 16
+                        Layout.preferredWidth: 140
+                        Layout.preferredHeight: 45
+
+                        background: Rectangle {
+                            color: parent.down ? "#d4d4d4" : "#e0e0e0"
+                            radius: 6
+                        }
+                        contentItem: Text {
+                            text: parent.text
+                            color: "#333333"
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                            font: parent.font
+                        }
+
+                        onClicked: {
+                            stackView.pop()
+                        }
+                    }
+
+                    Button {
+                        text: "Factory Reset"
+                        font.pixelSize: 16
+                        font.bold: true
+                        Layout.preferredWidth: 140
+                        Layout.preferredHeight: 45
+
+                        background: Rectangle {
+                            color: parent.down ? "#c82333" : "#dc3545"
+                            radius: 6
+                        }
+                        contentItem: Text {
+                            text: parent.text
+                            color: "white"
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                            font: parent.font
+                        }
+
+                        onClicked: factoryResetDialog.open()
+                    }
                 }
             }
         }
@@ -85,16 +144,27 @@ Item {
 
     Dialog {
         id: factoryResetDialog
-        title: "Confirm Factory Reset"
+        title: "System Warning"
         standardButtons: Dialog.Ok | Dialog.Cancel
         anchors.centerIn: parent
+        width: 400
+
+        background: Rectangle {
+            color: "white"
+            radius: 8
+            border.color: "#cccccc"
+        }
 
         Label {
-            text: "Are you sure you want to factory reset this device?"
+            text: "Are you sure you want to completely erase device configurations and factory reset this Smart Cart?"
+            font.pixelSize: 16
+            color: "#333333"
+            wrapMode: Text.WordWrap
+            width: parent.width
         }
 
         onAccepted: {
-            if (settingsController) settingsController.factoryReset()
+            if (typeof settingsController !== "undefined") settingsController.factoryReset()
         }
     }
 }

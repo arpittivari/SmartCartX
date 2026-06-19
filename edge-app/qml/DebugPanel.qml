@@ -6,7 +6,7 @@ Item {
     id: root
     width: 250
     height: parent.height
-    visible: true // Visible by default for this milestone testing
+    visible: true
 
     Rectangle {
         anchors.fill: parent
@@ -28,32 +28,32 @@ Item {
             Rectangle { height: 1; Layout.fillWidth: true; color: "gray" }
 
             Text {
-                text: "State: " + debugController.currentState
+                text: "State: " + (typeof debugController !== 'undefined' ? debugController.currentState : 'Unknown')
                 color: "lightgreen"
                 font.pixelSize: 14
             }
             Text {
-                text: "MQTT: " + (debugController.mqttConnected ? "Connected" : "Disconnected")
-                color: debugController.mqttConnected ? "lightgreen" : "red"
+                text: "MQTT: " + (typeof debugController !== 'undefined' && debugController.mqttConnected ? "Connected" : "Disconnected")
+                color: (typeof debugController !== 'undefined' && debugController.mqttConnected) ? "lightgreen" : "red"
                 font.pixelSize: 14
             }
             Text {
-                text: "UART: " + (debugController.uartConnected ? "Connected" : "Disconnected")
-                color: debugController.uartConnected ? "lightgreen" : "red"
+                text: "UART: " + (typeof debugController !== 'undefined' && debugController.uartConnected ? "Connected" : "Disconnected")
+                color: (typeof debugController !== 'undefined' && debugController.uartConnected) ? "lightgreen" : "red"
                 font.pixelSize: 14
             }
             Text {
-                text: "Packets RX: " + debugController.packetCount
+                text: "Packets RX: " + (typeof debugController !== 'undefined' ? debugController.packetCount : 0)
                 color: "white"
                 font.pixelSize: 14
             }
             Text {
-                text: "Last Pkt: " + debugController.lastPacketType
+                text: "Last Pkt: " + (typeof debugController !== 'undefined' ? debugController.lastPacketType : 'None')
                 color: "white"
                 font.pixelSize: 14
             }
 
-            Item { Layout.fillHeight: true } // Spacer
+            Item { Layout.fillHeight: true }
         }
     }
 }

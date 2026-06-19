@@ -11,6 +11,7 @@
 #include "../services/SerialService.h"
 #include "../drivers/Stm32Simulator.h"
 #include "../controllers/DebugController.h"
+#include "../controllers/SettingsController.h"
 #include "../di/HardwareProviderFactory.h"
 
 class AppContext : public QObject {
@@ -29,6 +30,7 @@ public:
     ShoppingService* shoppingService() { return m_shoppingService; }
     SerialService* serialService() { return m_serialService; }
     DebugController* debugController() { return m_debugController; }
+    SettingsController* settingsController() { return m_settingsController; }
 
 private slots:
     void onConfigChanged();
@@ -44,6 +46,7 @@ private:
     Stm32Simulator* m_stm32Simulator;
     DebugController* m_debugController;
     HardwareProviderFactory* m_hwFactory;
+    SettingsController* m_settingsController;
 };
 
 #endif
