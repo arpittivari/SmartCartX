@@ -1,3 +1,3 @@
-# SmartCartX Hardware Engineering
+# SmartCartX Hardware
 
-This directory contains all hardware engineering files for the SmartCartX product.
+Professional hardware workspace.
