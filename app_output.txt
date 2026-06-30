@@ -1,0 +1,342 @@
+QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-jules'
+QSoundEffect(qaudio): Error decoding source file:assets/audio/boot.wav
+QSoundEffect(qaudio): Error decoding source file:assets/audio/item_added.wav
+QSoundEffect(qaudio): Error decoding source file:assets/audio/item_removed.wav
+QSoundEffect(qaudio): Error decoding source file:assets/audio/checkout.wav
+QSoundEffect(qaudio): Error decoding source file:assets/audio/payment_success.wav
+QSoundEffect(qaudio): Error decoding source file:assets/audio/error.wav
+[AppContext] Initializing...
+[StateManager] Transition: "BOOT" -> "CHECK_DEVICE_CONFIGURATION"
+[StateManager] Transition: "CHECK_DEVICE_CONFIGURATION" -> "DEVICE_PROVISIONING"
+[MqttService] Connecting to "tcp://broker.hivemq.com:1883" as "pi_UNPROVISIONED"
+[ProvisioningService] Started provisioning flow.
+[MqttService] Connection Success!
+[MqttService] Connection Success!
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  [MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
+[MqttService] Connection Success!
+QObject::killTimer: Timers cannot be stopped from another thread
+[MqttService] Connection lost: ""
+QObject::startTimer: Timers cannot be started from another thread
