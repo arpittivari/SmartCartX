@@ -1,0 +1,4 @@
+(kicad_wks (version 20210606) (generator kicad_wks_editor)
+  (setup (textsize 1.5 1.5) (linewidth 0.15) (textlinewidth 0.15))
+  (line (name "") (start 0 0) (end 0 0))
+)
