@@ -3,13 +3,9 @@
 
 PcWebcamCamera::PcWebcamCamera(QObject* parent) : ICamera(parent) {
     m_camera = new QCamera(this);
-    m_session = new QMediaCaptureSession(this);
-    m_imageCapture = new QImageCapture(this);
+    m_imageCapture = new QCameraImageCapture(m_camera);
 
-    m_session->setCamera(m_camera);
-    m_session->setImageCapture(m_imageCapture);
-
-    connect(m_imageCapture, &QImageCapture::imageCaptured, this, &PcWebcamCamera::onImageCaptured);
+    connect(m_imageCapture, &QCameraImageCapture::imageCaptured, this, &PcWebcamCamera::onImageCaptured);
 }
 
 PcWebcamCamera::~PcWebcamCamera() {

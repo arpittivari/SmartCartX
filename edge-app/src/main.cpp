@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("shoppingService", context.shoppingService());
     engine.rootContext()->setContextProperty("settingsController", context.settingsController());
 
-    const QUrl url(u"qrc:/SmartCart/qml/Main.qml"_qs);
+    const QUrl url(QUrl("qrc:/SmartCart/qml/Main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
         &app, [url, &context](QObject *obj, const QUrl &objUrl) {
             if (!obj && url == objUrl) {

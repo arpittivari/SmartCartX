@@ -1,6 +1,7 @@
-import QtQuick
-import QtQuick.Controls
-import QtQuick.VirtualKeyboard
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.VirtualKeyboard 2.15
+import QtQuick.Window 2.15
 
 Window {
     id: mainWindow

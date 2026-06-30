@@ -3,8 +3,8 @@
 
 #include "../interfaces/ICamera.h"
 // Use Qt Multimedia classes instead of OpenCV
-#include <QMediaCaptureSession>
-#include <QImageCapture>
+
+#include <QCameraImageCapture>
 #include <QCamera>
 
 class PcWebcamCamera : public ICamera {
@@ -21,8 +21,8 @@ private slots:
 
 private:
     QCamera* m_camera;
-    QMediaCaptureSession* m_session;
-    QImageCapture* m_imageCapture;
+
+    QCameraImageCapture* m_imageCapture;
 };
 
 #endif

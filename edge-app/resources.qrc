@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/SmartCart">
+        <file>qml/ShoppingView.qml</file>
+        <file>qml/SettingsScreen.qml</file>
+        <file>qml/CustomerOnboardingView.qml</file>
+        <file>qml/BootSequenceView.qml</file>
+        <file>qml/Main.qml</file>
+        <file>qml/CheckoutScreen.qml</file>
+        <file>qml/PaymentCompleteScreen.qml</file>
+        <file>qml/WaitingApprovalView.qml</file>
+        <file>qml/theme/Theme.qml</file>
+        <file>qml/theme/qmldir</file>
+        <file>qml/DebugPanel.qml</file>
+        <file>qml/ProvisioningView.qml</file>
+        <file>qml/SplashScreen.qml</file>
+        <file>sounds/success.wav</file>
+        <file>sounds/boot.wav</file>
+        <file>sounds/error.wav</file>
+    </qresource>
+</RCC>

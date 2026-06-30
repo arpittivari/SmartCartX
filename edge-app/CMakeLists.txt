@@ -9,7 +9,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick SerialPort Multimedia)
+find_package(Qt5 REQUIRED COMPONENTS Core Gui Qml Quick SerialPort Multimedia)
 
 add_subdirectory(../protocols protocols)
 
@@ -34,7 +34,7 @@ set(PAHO_BUILD_SAMPLES OFF CACHE BOOL "" FORCE)
 set(PAHO_BUILD_DOCUMENTATION OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(paho_mqtt_cpp)
 
-qt_add_executable(edge_app
+add_executable(edge_app
     src/main.cpp
     src/core/AppContext.h
     src/core/AppContext.cpp
@@ -95,40 +95,22 @@ qt_add_executable(edge_app
 )
 
 target_link_libraries(edge_app PRIVATE
-    Qt6::Core
-    Qt6::Gui
-    Qt6::Qml
-    Qt6::Quick
-    Qt6::SerialPort
-    Qt6::Multimedia
+    Qt5::Core
+    Qt5::Gui
+    Qt5::Qml
+    Qt5::Quick
+    Qt5::SerialPort
+    Qt5::Multimedia
     protocols
     paho-mqttpp3
 )
 
-qt_add_qml_module(edge_app
-    URI SmartCart
-    VERSION 1.0
-    QML_FILES
-        qml/Main.qml
-        qml/SplashScreen.qml
-        qml/ProvisioningView.qml
-        qml/WaitingApprovalView.qml
-        qml/CustomerOnboardingView.qml
-        qml/ShoppingView.qml
-        qml/CheckoutScreen.qml
-        qml/PaymentCompleteScreen.qml
-        qml/DebugPanel.qml
-        qml/BootSequenceView.qml
-        qml/SettingsScreen.qml
-        qml/theme/Theme.qml
-)
+
 
 # To properly copy the qmldir for the Theme module into the build output
-set_source_files_properties(qml/theme/qmldir PROPERTIES QT_RESOURCE_ALIAS "qmldir")
-qt_add_resources(edge_app "theme_resources"
-    PREFIX "/SmartCart/qml/theme"
-    FILES qml/theme/qmldir
-)
+
+qt5_add_resources(RESOURCES resources.qrc)
+target_sources(edge_app PRIVATE ${RESOURCES})
 
 option(BUILD_TESTING "Build tests" OFF)
 
@@ -146,10 +128,10 @@ if(BUILD_TESTING)
         tests/test_state_machine.cpp
         src/controllers/StateManager.cpp
     )
-    find_package(Qt6 REQUIRED COMPONENTS Test)
+    find_package(Qt5 REQUIRED COMPONENTS Test)
     target_link_libraries(EdgeAppTests PRIVATE 
-        Qt6::Core
-        Qt6::Test
+        Qt5::Core
+        Qt5::Test
         GTest::gtest_main
     )
     

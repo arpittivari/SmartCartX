@@ -13,7 +13,7 @@ QtAudioPlayer::QtAudioPlayer(QObject* parent) : IAudioPlayer(parent) {
 
 void QtAudioPlayer::setupSound(SoundEvent event, const QString& filename) {
     QSoundEffect* effect = new QSoundEffect(this);
-    effect->setSource(QUrl::fromLocalFile("assets/audio/" + filename));
+    effect->setSource(QUrl("qrc:/SmartCart/sounds/" + filename));
     m_sounds[event] = effect;
 }
 
