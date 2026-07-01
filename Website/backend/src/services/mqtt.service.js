@@ -182,7 +182,6 @@ const connectMqttClient = (io) => {
         });
 
         if (!cart) {
-            // console.log(`Received message from unknown identifier: ${identifier}`);
             return;
         }
 
