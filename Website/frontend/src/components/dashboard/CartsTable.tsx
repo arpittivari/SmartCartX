@@ -39,7 +39,6 @@ const StatusIndicator = ({ status }: { status: string }) => {
 interface Props {
   carts: Cart[];
   onCartDeleted: () => void;
-  // This is the fix: The function now correctly expects to receive the full Cart object.
   onViewLive: (cart: Cart) => void;
   onViewHistory: (cart: Cart) => void;
 }

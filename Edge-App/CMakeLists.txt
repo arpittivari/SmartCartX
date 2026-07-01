@@ -130,7 +130,10 @@ if(BUILD_TESTING)
 
     add_executable(EdgeAppTests
         tests/test_state_machine.cpp
+        tests/test_shopping_session.cpp
         src/controllers/StateManager.cpp
+        src/models/ShoppingSession.cpp
+        src/models/CustomerProfile.cpp
     )
 
 # Explicitly mapping local paths for compilation stability

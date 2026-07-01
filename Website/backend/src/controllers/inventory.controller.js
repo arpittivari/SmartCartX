@@ -83,18 +83,32 @@ const processAdsAsync = async (orgId) => {
 
         logger.info(`DeepSeek Trigger: Found ${productsNeedingAds.length} products needing ads.`);
 
+        const bulkOps = [];
+
         for (const product of productsNeedingAds) {
             const adData = await deepseekService.generateAdCopy(product.name, product.category);
 
             if (adData) {
-                product.smart_ads = {
-                    ad_copy: adData.ad_copy,
-                    cross_sell: adData.cross_sell,
-                    generatedAt: new Date()
-                };
-                await product.save();
+                bulkOps.push({
+                    updateOne: {
+                        filter: { _id: product._id },
+                        update: {
+                            $set: {
+                                smart_ads: {
+                                    ad_copy: adData.ad_copy,
+                                    cross_sell: adData.cross_sell,
+                                    generatedAt: new Date()
+                                }
+                            }
+                        }
+                    }
+                });
                 logger.info(`Ad generated for ${product.name}`);
             }
+        }
+
+        if (bulkOps.length > 0) {
+            await Product.bulkWrite(bulkOps);
         }
     } catch (error) {
         logger.error('Async Ad Generation Error:', error);
