@@ -8,6 +8,9 @@
     "start": "node -r dotenv/config server.js",
     "dev": "nodemon -r dotenv/config server.js",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"
+
+    "test": "mocha src/**/*.test.js"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +29,7 @@
     "openai": "^6.14.0",
     "razorpay": "^2.9.6",
     "socket.io": "^4.8.1",
+    "supertest": "^7.2.2",
     "winston": "^3.19.0"
   },
   "devDependencies": {
@@ -34,5 +38,17 @@
     "mongodb-memory-server": "^11.2.0",
     "nodemon": "^3.1.10",
     "supertest": "^7.2.2"
+
+    "@jest/globals": "^30.4.1",
+    "jest": "^30.4.2",
+    "nodemon": "^3.1.10"
+
+    "chai": "^5.3.3",
+    "mocha": "^11.7.6",
+    "mongodb-memory-server": "^11.2.0",
+    "nodemon": "^3.1.10",
+    "sinon": "^19.0.5",
+    "supertest": "^7.2.2"
+
   }
 }
