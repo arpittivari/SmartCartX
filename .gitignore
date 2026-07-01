@@ -11,3 +11,5 @@ edge-app/build/
 *-bak.sch
 *.tmp
 *.zip
+Edge-App/build/
+/Edge-App/build/
