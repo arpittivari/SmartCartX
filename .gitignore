@@ -15,3 +15,5 @@ edge-app/build/
 _autosave-*
 *.tmp
 *.zip
+__pycache__/
+*.pyc
