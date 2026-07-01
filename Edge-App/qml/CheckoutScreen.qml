@@ -18,8 +18,10 @@ Rectangle {
     Component.onCompleted: {
         // GHOST CART FIX: Screen load hote hi state verify karo
         if (typeof shoppingService !== "undefined") {
-            // Optional: Agar cart khali hai toh previous history clean karo
-            // shoppingService.clearCart();
+            // Agar cart khali hai toh previous history clean karo
+            if (shoppingService.cart && shoppingService.cart.totalQuantity === 0) {
+                shoppingService.clearCart();
+            }
         }
     }
 
