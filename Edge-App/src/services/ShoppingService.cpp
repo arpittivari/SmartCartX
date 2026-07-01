@@ -7,7 +7,7 @@
 void ShoppingService::generateAndSendReceipt(const QString& customerEmail) {
     qDebug() << "Generating PDF for:" << customerEmail;
 
-    // Use HighResolution mode to fix the constructor error
+    // HighResolution mode is used to fix the constructor error
     QPrinter printer(QPrinter::HighResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setOutputFileName("receipt.pdf");
