@@ -67,8 +67,6 @@ const CartsTable = ({ carts, onCartDeleted, onViewLive, onViewHistory }: Props) 
     );
   }
 
-  // THE BUG IS REMOVED: The incorrect local "onViewLive" function is gone.
-
   return (
     <>
       <TableContainer component={Paper}>
