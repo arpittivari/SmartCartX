@@ -1,6 +1,7 @@
 import os
 import requests
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from PyQt6.QtCore import QThread, pyqtSignal
 
 class UploadAgent(QThread):
@@ -33,12 +34,17 @@ class UploadAgent(QThread):
 
         print(f"Found {len(files)} files to upload.")
 
-        for filename in files:
-            file_path = os.path.join(self.training_path, filename)
-            try:
-                self.upload_file(file_path, filename)
-            except Exception as e:
-                print(f"Failed to upload {filename}: {e}")
+        with ThreadPoolExecutor(max_workers=5) as executor:
+            futures = {
+                executor.submit(self.upload_file, os.path.join(self.training_path, filename), filename): filename
+                for filename in files
+            }
+            for future in as_completed(futures):
+                filename = futures[future]
+                try:
+                    future.result()
+                except Exception as e:
+                    print(f"Failed to upload {filename}: {e}")
 
     def upload_file(self, file_path, filename):
         headers = {
