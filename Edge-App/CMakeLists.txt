@@ -130,7 +130,16 @@ if(BUILD_TESTING)
 
     add_executable(EdgeAppTests
         tests/test_state_machine.cpp
+        tests/test_simulated_button_input.cpp
         src/controllers/StateManager.cpp
+        src/drivers/simulated/SimulatedButtonInput.cpp
+        src/drivers/interfaces/interfaces.cpp
+        src/drivers/interfaces/IButtonInput.h
+        src/drivers/interfaces/IBatteryMonitor.h
+        src/drivers/interfaces/IWeightSensor.h
+        src/drivers/interfaces/IBarcodeScanner.h
+        src/drivers/interfaces/ICamera.h
+        src/drivers/interfaces/IAudioPlayer.h
     )
 
 # Explicitly mapping local paths for compilation stability
