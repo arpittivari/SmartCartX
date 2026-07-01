@@ -1,15 +1,8 @@
-import crypto from 'crypto';
-import { exec } from 'child_process';
-import util from 'util';
-import path from 'path';
 import Cart from '../models/cart.model.js';
 import UnclaimedCart from '../models/unclaimedCart.model.js';
 import Transaction from '../models/transaction.model.js';
 import User from '../models/user.model.js';
 import emailService from '../services/email.service.js';
-
-// Create a promise-based version of the exec command
-const execPromise = util.promisify(exec);
 
 /**
  * @desc    Claims a new cart and registers it to the logged-in admin
