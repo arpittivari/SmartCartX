@@ -5,7 +5,6 @@ import {
   Scan,
   Zap,
   CreditCard,
-  ShieldCheck,
   ArrowRight,
   Play,
   Linkedin,
