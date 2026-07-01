@@ -5,7 +5,6 @@ import Cart from '../models/cart.model.js';
 import UnclaimedCart from '../models/unclaimedCart.model.js';
 import Transaction from '../models/transaction.model.js';
 import Product from '../models/product.model.js';
-import { createPaymentLink } from './payment.service.js';
 import deepseekService from './deepseek.service.js';
 
 /**
@@ -281,25 +280,3 @@ const connectMqttClient = (io) => {
 };
 
 export default connectMqttClient;
-Ethernet adapter Ethernet:
-
-   Media State . . . . . . . . . . . : Media disconnected
-   Connection-specific DNS Suffix  . :
-
-Wireless LAN adapter Local Area Connection* 9:
-
-   Media State . . . . . . . . . . . : Media disconnected
-   Connection-specific DNS Suffix  . :
-
-Wireless LAN adapter Local Area Connection* 12:
-
-   Media State . . . . . . . . . . . : Media disconnected
-   Connection-specific DNS Suffix  . :
-
-Wireless LAN adapter Wi-Fi:
-
-   Connection-specific DNS Suffix  . : BIET
-   Link-local IPv6 Address . . . . . : fe80::4dfc:7e00:7203:4813%13
-   IPv4 Address. . . . . . . . . . . : 192.168.85.64
-   Subnet Mask . . . . . . . . . . . : 255.255.248.0
-   Default Gateway . . . . . . . . . : 192.168.80.1
