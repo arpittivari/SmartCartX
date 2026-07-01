@@ -11,3 +11,5 @@ edge-app/build/
 *-bak.sch
 *.tmp
 *.zip
+__pycache__/
+*.pyc
