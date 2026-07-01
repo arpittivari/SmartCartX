@@ -135,10 +135,17 @@ if(BUILD_TESTING)
         src/controllers/StateManager.cpp
         src/drivers/simulated/SimulatedButtonInput.cpp
         src/drivers/interfaces/interfaces.cpp
+
+        src/drivers/interfaces/IBatteryMonitor.h
+        src/drivers/interfaces/IWeightSensor.h
+        src/drivers/interfaces/IBarcodeScanner.h
+        src/drivers/interfaces/IButtonInput.h
+
         src/drivers/interfaces/IButtonInput.h
         src/drivers/interfaces/IBatteryMonitor.h
         src/drivers/interfaces/IWeightSensor.h
         src/drivers/interfaces/IBarcodeScanner.h
+
         src/drivers/interfaces/ICamera.h
         src/drivers/interfaces/IAudioPlayer.h
 
