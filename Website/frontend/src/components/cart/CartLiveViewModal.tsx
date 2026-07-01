@@ -44,7 +44,7 @@ const CartLiveViewModal: React.FC<CartLiveViewModalProps> = ({ open, onClose, ca
             });
 
             // 👈 New Listener for Payment Success
-            socket.on('cartPaid', (data: any) => {
+            socket.on('cartPaid', () => {
                 setPaymentMessage({ type: 'success', text: 'Online Payment Confirmed! Cart Unlocked.' });
 
                 // Speech Announcement
