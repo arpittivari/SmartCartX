@@ -43,7 +43,7 @@ const MallManagementPage = () => {
     const [companyPassword, setCompanyPassword] = useState('');
     const [deleteError, setDeleteError] = useState('');
 
-    const { user, login, impersonate } = useAuth();
+    const { user, impersonate } = useAuth();
     const navigate = useNavigate();
 
     const fetchMalls = useCallback(async () => {

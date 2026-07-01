@@ -1,9 +1,6 @@
 build_protocols/
 build_edge/
 firmware/.pio/
-build_edge/
-build_edge/
-build_edge/
 edge-app/build/
 
 # KiCad ignores
@@ -12,6 +9,7 @@ edge-app/build/
 *-bak.kicad_pcb
 *-bak.kicad_sch
 *-bak.sch
-_autosave-*
 *.tmp
 *.zip
+Edge-App/build/
+/Edge-App/build/
