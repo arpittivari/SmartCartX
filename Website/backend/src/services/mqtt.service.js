@@ -4,7 +4,6 @@ import Cart from '../models/cart.model.js';
 import UnclaimedCart from '../models/unclaimedCart.model.js';
 import Transaction from '../models/transaction.model.js';
 import Product from '../models/product.model.js';
-import { createPaymentLink } from './payment.service.js';
 import deepseekService from './deepseek.service.js';
 
 /**
