@@ -183,7 +183,6 @@ const connectMqttClient = (io) => {
         });
 
         if (!cart) {
-            // console.log(`Received message from unknown identifier: ${identifier}`);
             return;
         }
 
@@ -281,25 +280,3 @@ const connectMqttClient = (io) => {
 };
 
 export default connectMqttClient;
-Ethernet adapter Ethernet:
-
-   Media State . . . . . . . . . . . : Media disconnected
-   Connection-specific DNS Suffix  . :
-
-Wireless LAN adapter Local Area Connection* 9:
-
-   Media State . . . . . . . . . . . : Media disconnected
-   Connection-specific DNS Suffix  . :
-
-Wireless LAN adapter Local Area Connection* 12:
-
-   Media State . . . . . . . . . . . : Media disconnected
-   Connection-specific DNS Suffix  . :
-
-Wireless LAN adapter Wi-Fi:
-
-   Connection-specific DNS Suffix  . : BIET
-   Link-local IPv6 Address . . . . . : fe80::4dfc:7e00:7203:4813%13
-   IPv4 Address. . . . . . . . . . . : 192.168.85.64
-   Subnet Mask . . . . . . . . . . . : 255.255.248.0
-   Default Gateway . . . . . . . . . : 192.168.80.1
