@@ -1,7 +1,6 @@
 import crypto from 'crypto';
 import { exec } from 'child_process';
 import util from 'util';
-import path from 'path';
 import Cart from '../models/cart.model.js';
 import UnclaimedCart from '../models/unclaimedCart.model.js';
 import Transaction from '../models/transaction.model.js';
