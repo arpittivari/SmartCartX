@@ -19,15 +19,24 @@ const checkStaleCarts = (io) => {
     const STALE_TIMEOUT = 65 * 1000; // 65 seconds
     const staleTime = new Date(Date.now() - STALE_TIMEOUT);
     try {
-      const staleCarts = await Cart.find({
+      const filter = {
         lastSeen: { $lt: staleTime },
         status: { $ne: 'Offline' }
-      });
+      };
+
+      const staleCarts = await Cart.find(filter);
+
       if (staleCarts.length > 0) {
-        console.log(`   - ❗ Found ${staleCarts.length} stale cart(s). Marking as Offline.`);
+        const staleCartIds = staleCarts.map(cart => cart._id);
+
+        await Cart.updateMany(
+          { _id: { $in: staleCartIds } },
+          { $set: { status: 'Offline' } }
+        );
+
+        console.log(`   - ❗ Found ${staleCarts.length} stale cart(s). Marked as Offline.`);
         for (const cart of staleCarts) {
           cart.status = 'Offline';
-          await cart.save();
           // Broadcast to dashboard
           io.emit('cartUpdate', cart);
           // Also emit to the specific room so Live View updates
@@ -281,25 +290,3 @@ const connectMqttClient = (io) => {
 };
 
 export default connectMqttClient;
-Ethernet adapter Ethernet:
-
-   Media State . . . . . . . . . . . : Media disconnected
-   Connection-specific DNS Suffix  . :
-
-Wireless LAN adapter Local Area Connection* 9:
-
-   Media State . . . . . . . . . . . : Media disconnected
-   Connection-specific DNS Suffix  . :
-
-Wireless LAN adapter Local Area Connection* 12:
-
-   Media State . . . . . . . . . . . : Media disconnected
-   Connection-specific DNS Suffix  . :
-
-Wireless LAN adapter Wi-Fi:
-
-   Connection-specific DNS Suffix  . : BIET
-   Link-local IPv6 Address . . . . . : fe80::4dfc:7e00:7203:4813%13
-   IPv4 Address. . . . . . . . . . . : 192.168.85.64
-   Subnet Mask . . . . . . . . . . . : 255.255.248.0
-   Default Gateway . . . . . . . . . : 192.168.80.1
