@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Box, Typography, Button, Paper, CircularProgress, Alert } from '@mui/material';
 import { processPayment } from '../api/cartApi';
