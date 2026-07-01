@@ -1,9 +1,6 @@
 build_protocols/
 build_edge/
 firmware/.pio/
-build_edge/
-build_edge/
-build_edge/
 edge-app/build/
 
 # KiCad ignores
@@ -15,3 +12,6 @@ edge-app/build/
 _autosave-*
 *.tmp
 *.zip
+
+# CMake build directory
+Edge-App/build/
