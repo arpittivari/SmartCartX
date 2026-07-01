@@ -15,3 +15,5 @@ edge-app/build/
 _autosave-*
 *.tmp
 *.zip
+build/
+Edge-App/build/
