@@ -27,6 +27,10 @@ const registerAdmin = async (req, res) => {
       return res.status(400).json({ message: `Please provide both ${isCompany ? 'Company ID' : 'Mall ID'} and a password.` });
     }
 
+    if (typeof identifier !== 'string' || typeof password !== 'string') {
+      return res.status(400).json({ message: 'Invalid input format.' });
+    }
+
     // Check for existence
     const query = {};
     query[identifierField] = identifier;
@@ -73,6 +77,10 @@ const loginAdmin = async (req, res) => {
         return res.status(400).json({ message: `Please provide ${isCompany ? 'Company ID' : 'Mall ID'}` });
     }
 
+    if (typeof identifier !== 'string' || (password && typeof password !== 'string')) {
+      return res.status(400).json({ message: 'Invalid input format.' });
+    }
+
     const query = {};
     query[identifierField] = identifier;
     const user = await User.findOne(query);
@@ -98,6 +106,10 @@ const createMallUnderCompany = async (req, res) => {
 
     if (req.user.role !== 'company') {
         return res.status(403).json({ message: 'Only companies can perform this action' });
+    }
+
+    if (!mallId || typeof mallId !== 'string') {
+        return res.status(400).json({ message: 'Invalid input format.' });
     }
 
     try {
@@ -172,6 +184,11 @@ const deleteMallUnderCompany = async (req, res) => {
 // Controller for initiating a password reset
 const forgotPassword = async (req, res) => {
   const { mallId } = req.body;
+
+  if (!mallId || typeof mallId !== 'string') {
+    return res.status(400).json({ message: 'Invalid input format.' });
+  }
+
   try {
     const user = await User.findOne({ mallId });
 
