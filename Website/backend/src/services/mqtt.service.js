@@ -17,15 +17,24 @@ const checkStaleCarts = (io) => {
     const STALE_TIMEOUT = 65 * 1000; // 65 seconds
     const staleTime = new Date(Date.now() - STALE_TIMEOUT);
     try {
-      const staleCarts = await Cart.find({
+      const filter = {
         lastSeen: { $lt: staleTime },
         status: { $ne: 'Offline' }
-      });
+      };
+
+      const staleCarts = await Cart.find(filter);
+
       if (staleCarts.length > 0) {
-        console.log(`   - ❗ Found ${staleCarts.length} stale cart(s). Marking as Offline.`);
+        const staleCartIds = staleCarts.map(cart => cart._id);
+
+        await Cart.updateMany(
+          { _id: { $in: staleCartIds } },
+          { $set: { status: 'Offline' } }
+        );
+
+        console.log(`   - ❗ Found ${staleCarts.length} stale cart(s). Marked as Offline.`);
         for (const cart of staleCarts) {
           cart.status = 'Offline';
-          await cart.save();
           // Broadcast to dashboard
           io.emit('cartUpdate', cart);
           // Also emit to the specific room so Live View updates
