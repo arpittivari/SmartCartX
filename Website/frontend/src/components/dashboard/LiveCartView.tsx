@@ -29,8 +29,6 @@ const LiveCartView = ({ open, onClose, cart }: Props) => {
   // This is the correct, aggregated list of items
   const items: Item[] = currentCart?.currentItems || [];
   
-  // --- THIS IS THE FIX for the total calculation ---
-  // It now correctly multiplies the price by the quantity
   const totalCost = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 

@@ -141,7 +141,7 @@ const AppLayout = () => {
   const handleLogout = () => {
     logout(); // This clears the user's data from memory
     handleProfileClose(); // This closes the profile menu if it's open
-    navigate('/'); // This is the FIX: It redirects the user to the public Landing Page
+    navigate('/'); // Redirect to the public Landing Page
   };
 
   const handleStopImpersonating = () => {
