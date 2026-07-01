@@ -29,10 +29,6 @@ const initSocket = (io) => {
         console.log(`   - 🆘 Help requested by ${data.cartId}`);
         io.to(data.mallId).emit('assistanceAlert', data);
     });
-
-    socket.on('disconnect', () => {
-      // console.log('Client disconnected:', socket.id);
-    });
   });
 
   // --- Public Namespace for Cart Live Updates (Requested Endpoint) ---
