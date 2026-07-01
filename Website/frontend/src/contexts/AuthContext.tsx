@@ -32,6 +32,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [originalUser, setOriginalUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true); // Start as true
 
+
   useEffect(() => {
     try {
       const storedUser = localStorage.getItem('smartcartUser');
@@ -53,7 +54,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       // finished checking localStorage.
       setIsLoading(false);
     }
-  }, []);
+
 
   const login = (userData: User) => {
     setUser(userData);
