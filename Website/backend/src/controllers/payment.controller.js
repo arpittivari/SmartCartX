@@ -1,9 +1,13 @@
 import jwt from 'jsonwebtoken';
 import Cart from '../models/cart.model.js';
 import Transaction from '../models/transaction.model.js';
+import config from '../config/index.js';
 
-// Minimal controller implementation with JWT-based checkout flow
-const JWT_SECRET = process.env.JWT_SECRET || 'secret';
+// Ensure JWT secret is securely configured
+if (!config.jwtSecret) {
+    throw new Error('FATAL ERROR: JWT_SECRET is not defined in environment variables.');
+}
+const JWT_SECRET = config.jwtSecret;
 
 // Helper to get socket.io instance
 const getIo = (req) => req.app.get('io');

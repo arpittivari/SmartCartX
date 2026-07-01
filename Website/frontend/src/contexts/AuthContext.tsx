@@ -32,8 +32,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [originalUser, setOriginalUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true); // Start as true
 
-  // This useEffect hook runs ONCE when the app first starts.
-  // This is the "clock-in machine" that checks your ID from localStorage.
+
   useEffect(() => {
     try {
       const storedUser = localStorage.getItem('smartcartUser');
@@ -55,7 +54,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       // finished checking localStorage.
       setIsLoading(false);
     }
-  }, []); // The empty array [] means "run this only once on startup"
+
 
   const login = (userData: User) => {
     setUser(userData);
