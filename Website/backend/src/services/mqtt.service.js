@@ -104,7 +104,9 @@ const connectMqttClient = (io) => {
 
         try {
              // 1. Try to find cached "Smart Recommendations" in Product DB
-             const product = await Product.findOne({ name: { $regex: new RegExp(scanned_item, 'i') } });
+             const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+             const safeScannedItem = escapeRegExp(String(scanned_item || ''));
+             const product = await Product.findOne({ name: { $regex: new RegExp(safeScannedItem, 'i') } });
 
              if (product && product.smart_ads && product.smart_ads.ad_copy) {
                  // Found valid cached ad
