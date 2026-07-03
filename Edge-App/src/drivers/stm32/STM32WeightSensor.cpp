@@ -1,6 +1,6 @@
 #include "STM32WeightSensor.h"
 #include "../../services/SerialService.h"
-#include "../../../protocols/include/packet.hpp"
+#include "packet.hpp"
 
 STM32WeightSensor::STM32WeightSensor(SerialService* serialService, QObject* parent)
     : IWeightSensor(parent), m_serialService(serialService)

@@ -1,6 +1,6 @@
 #include "STM32BatteryMonitor.h"
 #include "../../services/SerialService.h"
-#include "../../../protocols/include/packet.hpp"
+#include "packet.hpp"
 
 STM32BatteryMonitor::STM32BatteryMonitor(SerialService* serialService, QObject* parent)
     : IBatteryMonitor(parent), m_serialService(serialService)
