@@ -13,3 +13,4 @@ edge-app/build/
 *.zip
 __pycache__/
 *.pyc
+build/

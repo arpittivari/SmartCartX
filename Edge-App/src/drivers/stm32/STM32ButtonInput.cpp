@@ -1,6 +1,6 @@
 #include "STM32ButtonInput.h"
 #include "../../services/SerialService.h"
-#include "../../../protocols/include/packet.hpp"
+#include "packet.hpp"
 
 STM32ButtonInput::STM32ButtonInput(SerialService* serialService, QObject* parent)
     : IButtonInput(parent), m_serialService(serialService)
